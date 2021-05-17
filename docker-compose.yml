@@ -60,19 +60,11 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   nifi-file-reader:
-    build:
-      context: ./nifi_file/docker
-      dockerfile: Dockerfile
+    image: 'apache/nifi:1.12.1'
     ports:
       - "8080:8080"
-    #volumes:
-      #- ./nifi_file/input:/input
-      #- ./nifi_file/config/nifi_state:/opt/nifi/nifi-current/state
-      #- ./nifi_file/config/nifi_db:/opt/nifi/nifi-current/database_repository
-      #- ./nifi_file/config/nifi_flowfile:/opt/nifi/nifi-current/flowfile_repository
-      #- ./nifi_file/config/nifi_content:/opt/nifi/nifi-current/content_repository
-      #- ./nifi_file/config/nifi_provenance:/opt/nifi/nifi-current/provenance_repository
-      #- ./nifi_file/config:/opt/nifi/nifi-current/conf
+    volumes:
+      - ./nifi_file/input:/opt/nifi/nifi-current/input
     depends_on:
       - "kafka-1"
       - "kafka-2"
@@ -83,13 +75,6 @@ services:
     image: 'apache/nifi:1.12.1'
     ports:
       - "9090:8080"
-    #volumes:
-      #- ./nifi_file/config:/opt/nifi/nifi-current/conf
-      #- ./nifi_kafka/config/nifi_state:/opt/nifi/nifi-current/state
-      #- ./nifi_kafka/config/nifi_db:/opt/nifi/nifi-current/database_repository
-      #- ./nifi_kafka/config/nifi_flowfile:/opt/nifi/nifi-current/flowfile_repository
-      #- ./nifi_kafka/config/nifi_content:/opt/nifi/nifi-current/content_repository
-      #- ./nifi_kafka/config/nifi_provenance:/opt/nifi/nifi-current/provenance_repository   
     depends_on:
       - "kafka-1"
       - "kafka-2"
