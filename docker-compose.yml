@@ -1,0 +1,94 @@
+version: "3.9"
+
+networks:
+  kafka-net:
+    driver: bridge
+
+services:
+  mongodb:
+    image : mongo
+    container_name: mongodb
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./mongo/db:/data/db
+    ports:
+      - 27017:27017
+    restart: always
+
+  zookeeper-server:
+    image: 'bitnami/zookeeper:latest'
+    networks:
+      - kafka-net
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    restart: always
+
+  kafka-server1:
+    image: 'bitnami/kafka:latest'
+    networks:
+      - kafka-net    
+    ports:
+      - '9092:9092'
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+    depends_on:
+      - zookeeper-server
+    restart: always
+
+  #kafka-server2:
+  #  image: 'bitnami/kafka:latest'
+  #  networks:
+  #    - kafka-net    
+  #  ports:
+  #    - '9093:9092'
+  #  environment:
+  #    - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181
+  #    - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9093
+  #    - ALLOW_PLAINTEXT_LISTENER=yes
+  #    - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+  #  depends_on:
+  #    - zookeeper-server
+  #  restart: always
+
+  nifi-file-reader:
+    build:
+      context: ./nifi_file/docker
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      #- ./nifi_file/input:/input
+      #- ./nifi_file/config/nifi_state:/opt/nifi/nifi-current/state
+      #- ./nifi_file/config/nifi_db:/opt/nifi/nifi-current/database_repository
+      #- ./nifi_file/config/nifi_flowfile:/opt/nifi/nifi-current/flowfile_repository
+      #- ./nifi_file/config/nifi_content:/opt/nifi/nifi-current/content_repository
+      #- ./nifi_file/config/nifi_provenance:/opt/nifi/nifi-current/provenance_repository
+      - ./nifi_file/config:/opt/nifi/nifi-current/conf
+    depends_on:
+      - "kafka-server1"
+    #restart: always
+
+  nifi-kafka-consumer:
+    build:
+      context: ./nifi_kafka/docker
+      dockerfile: Dockerfile
+    ports:
+      - "9090:8080"
+    #volumes:
+      #- ./nifi_file/config:/opt/nifi/nifi-current/conf
+      #- ./nifi_kafka/config/nifi_state:/opt/nifi/nifi-current/state
+      #- ./nifi_kafka/config/nifi_db:/opt/nifi/nifi-current/database_repository
+      #- ./nifi_kafka/config/nifi_flowfile:/opt/nifi/nifi-current/flowfile_repository
+      #- ./nifi_kafka/config/nifi_content:/opt/nifi/nifi-current/content_repository
+      #- ./nifi_kafka/config/nifi_provenance:/opt/nifi/nifi-current/provenance_repository   
+    depends_on:
+      - "kafka-server1"
+      - "mongodb"
+    #restart: always
