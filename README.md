@@ -39,6 +39,7 @@ O NiFi Registry pode ser acessado no seguinte endereço: `http://localhost:18080
 **Em cada instância:** Configure o NiFi Registry com `http://<ip anotado no passo 3>:18080` e, em seguida: Botão direito do mouse no canvas -> Refresh.
 
 **Na instância 1**, importe o Process Group relacionado à importação de arquivos, do Nifi Registry.
+
 **Na instância 2**, importe o Process Group relacionado à persistência no MongoDB, do Nifi Registry.
 
 
