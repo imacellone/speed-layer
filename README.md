@@ -31,8 +31,6 @@ Instruções de como subir e executar esta POC.
 
 2 - Execute: `sudo docker-compose up -d` .  *A primeira execução deste comando pode levar vários minutos.*
 
-3 - Anote o endereço IP resultante da execução do seguinte comando: `sudo docker inspect nifi-registry | grep Gateway`.
-
 ### Acesse as duas instâncias de NiFi
 1 - `http://localhost:8080`
 
@@ -40,7 +38,7 @@ Instruções de como subir e executar esta POC.
 
 O NiFi Registry pode ser acessado no seguinte endereço: `http://localhost:18080`
 
-**Em cada instância:** Configure o NiFi Registry com `http://<ip anotado no passo 3>:18080` e, em seguida: Botão direito do mouse no canvas -> Refresh.
+**Em cada instância:** Configure o NiFi Registry com `http://nifi-registry:18080` e, em seguida: Botão direito do mouse no canvas -> Refresh.
 
 **Na instância 1**, importe o Process Group relacionado à importação de arquivos, do Nifi Registry.
 
