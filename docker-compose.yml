@@ -91,7 +91,7 @@ services:
     restart: always
 
   nifi-registry:
-    image: michalklempa/nifi-registry:0.8.0-default
+    image: michalklempa/nifi-registry:0.8.0-01
     container_name: nifi-registry
     volumes:
       - "/home/italo/.ssh:/home/nifi/.ssh"
@@ -106,6 +106,6 @@ services:
       GIT_CHECKOUT_BRANCH: master
       FLOW_PROVIDER_GIT_FLOW_STORAGE_DIRECTORY: /opt/nifi-registry/flow-storage-git
       FLOW_PROVIDER_GIT_REMOTE_TO_PUSH: origin
-      GIT_CONFIG_USER_NAME: 'Italo Macellone' # Substitua com o seu próprio nome.
-      GIT_CONFIG_USER_EMAIL: italomacellone@gmail.com # Substitua com o seu próprio e-mail.
+      GIT_CONFIG_USER_NAME: 'Italo Macellone'
+      GIT_CONFIG_USER_EMAIL: italomacellone@gmail.com
     restart: always
