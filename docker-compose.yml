@@ -1,5 +1,4 @@
 version: "3.7"
-
 services:
   mongodb:
     image : mongo
@@ -15,22 +14,27 @@ services:
 
   zookeeper-1:
     image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper-1
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 22181:2181
+    restart: always
   
   zookeeper-2:
     image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper-2
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 32181:2181
+    restart: always
     
   kafka-1:
     image: confluentinc/cp-kafka:latest
+    container_name: kafka-1
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -43,9 +47,11 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    restart: always
   
   kafka-2:
     image: confluentinc/cp-kafka:latest
+    container_name: kafka-2
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -58,9 +64,11 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    restart: always
 
   nifi-file-reader:
     image: 'apache/nifi:1.12.1'
+    container_name: nifi-file-reader
     ports:
       - "8080:8080"
     volumes:
@@ -69,20 +77,22 @@ services:
       - "kafka-1"
       - "kafka-2"
       - "mongodb"
-    #restart: always
+    restart: always
 
   nifi-kafka-consumer:
     image: 'apache/nifi:1.12.1'
+    container_name: nifi-kafka-consumer
     ports:
       - "9090:8080"
     depends_on:
       - "kafka-1"
       - "kafka-2"
       - "mongodb"
-    #restart: always
+    restart: always
 
   nifi-registry:
     image: michalklempa/nifi-registry
+    container_name: nifi-registry
     volumes:
       - "/home/italo/.ssh:/home/nifi/.ssh"
     ports:
@@ -97,6 +107,6 @@ services:
       GIT_CHECKOUT_BRANCH: master
       FLOW_PROVIDER_GIT_FLOW_STORAGE_DIRECTORY: /opt/nifi-registry/flow-storage-git
       FLOW_PROVIDER_GIT_REMOTE_TO_PUSH: origin
-      GIT_CONFIG_USER_NAME: 'Italo Macellone'
-      GIT_CONFIG_USER_EMAIL: italomacellone@gmail.com
+      GIT_CONFIG_USER_NAME: 'Italo Macellone' # Substitua com o seu próprio nome.
+      GIT_CONFIG_USER_EMAIL: italomacellone@gmail.com # Substitua com o seu próprio e-mail.
     restart: always
