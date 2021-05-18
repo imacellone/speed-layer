@@ -24,7 +24,7 @@ Instruções de como subir e executar esta POC.
 ## Execução
 
 1 - Em um terminal, abra o diretório raiz do projeto.
-2 - Execute: `sudo docker-compose up -d` . *A primeira execução deste comando pode levar vários minutos.*
+2 - Execute: `sudo docker-compose up -d` . A primeira execução deste comando pode levar vários minutos.*
 3 - Anote o endereço IP resultante da execução do seguinte comando: `sudo docker inspect nifi-registry | grep Gateway`.
 
 ### Acesse as duas instâncias de NiFi
@@ -37,4 +37,8 @@ Instruções de como subir e executar esta POC.
 **Na instância 2**, importe o Process Group relacionado à persistência no MongoDB, do Nifi Registry.
 
 
-### Pronto! Divirta-se!
+#### Pronto! Divirta-se!
+
+## Encerrar
+Para parar todos os contêineres, basta rodar o seguinte comando no diretório raiz do projeto: 
+`sudo docker-compose down`
