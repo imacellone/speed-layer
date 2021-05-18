@@ -1,7 +1,11 @@
+
 # POC - Speed Layer - Open Banking
 
 Instruções de como subir e executar esta POC.
 
+## Visão Geral da Arquitetura
+
+![Arquitetura - Visão Geral](SpeedLayer.jpg)
 
 ## Software Necessário
 
