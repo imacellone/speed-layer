@@ -113,6 +113,8 @@ services:
     container_name: nifi-kafka-consumer
     ports:
       - "9090:8080"
+    volumes:
+      - ./nifi_mongo/input:/opt/nifi/nifi-current/input
     depends_on:
       - "kafka-1"
       - "kafka-2"
