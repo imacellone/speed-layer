@@ -25,7 +25,7 @@ Instruções de como subir e executar esta POC.
  3 - Clone **este** repositório. *Para mais informações: https://git-scm.com/book/pt-pt/v2/No%C3%A7%C3%B5es-B%C3%A1sicas-do-Git-Obtendo-um-Reposit%C3%B3rio-Git.*
 
 ### IMPORTANTE:
-**4 - Na raiz do projeto, há um arquivo chamado: *docker-compose.yml*. Nele, altere as configurações, indicadas pelos comentários, para o correto funcionamento deste projeto.**
+**4 - Substitua os comentários em docker-compose.yml com as suas próprias informações (nome completo e e-mail).**
 
 ## Preparação
 
