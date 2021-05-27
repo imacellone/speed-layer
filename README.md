@@ -64,7 +64,7 @@ Add Process Group -> Import:
 **Em cada instância:**  Acesse o Process Group recém importado e inicie os processadores.
  - O arquivo speed-layer/nifi_file/input/bank.xlsx será consumido pela **Instância 1**.
  
- Acesse o contêiner do MongoDB e verifique que os dados da planilha foram persistidos no banco de dados. Para isso, em um terminal, execute os seguintes comandos:
+ Acesse o contêiner do MongoDB. Para isso, em um terminal, execute os seguintes comandos:
 
     sudo docker exec -it mongodb /bin/bash
         
