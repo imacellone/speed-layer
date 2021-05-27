@@ -137,6 +137,6 @@ services:
       GIT_CHECKOUT_BRANCH: master
       FLOW_PROVIDER_GIT_FLOW_STORAGE_DIRECTORY: /opt/nifi-registry/flow-storage-git
       FLOW_PROVIDER_GIT_REMOTE_TO_PUSH: origin
-      GIT_CONFIG_USER_NAME: 'Your Full Name' # Coloque seu nome completo entre aspas simples
-      GIT_CONFIG_USER_EMAIL: your@email.com # Coloque seu e-mail para o GitHub
+      GIT_CONFIG_USER_NAME: # Seu nome completo entre aspas simples
+      GIT_CONFIG_USER_EMAIL: # Seu e-mail associado à sua conta do GitHub
     restart: always
