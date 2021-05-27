@@ -24,7 +24,8 @@ Instruções de como subir e executar esta POC.
  
  3 - Clone **este** repositório. *Para mais informações: https://git-scm.com/book/pt-pt/v2/No%C3%A7%C3%B5es-B%C3%A1sicas-do-Git-Obtendo-um-Reposit%C3%B3rio-Git.*
 
-4 - Na raiz do projeto, há um arquivo chamado: *docker-compose.yml*. Nele, altere as configurações, indicadas pelos comentários, para o correto funcionamento deste projeto.
+### IMPORTANTE:
+**4 - Substitua os comentários em docker-compose.yml com as suas próprias informações (nome completo e e-mail). -- !!!NÃO COMITA ESSAS ALTERAÇÕES!!!**
 
 ## Preparação
 
@@ -33,9 +34,9 @@ Instruções de como subir e executar esta POC.
 2 - Execute: `sudo docker-compose up -d` .  *A primeira execução deste comando pode levar vários minutos.*
 
 ### Acesse as duas instâncias de NiFi
-1 - `http://localhost:8080`
+**Instância 1:** `http://localhost:8080/nifi`
 
-2 - `http://localhost:9090`
+**Instância 2:** `http://localhost:9090/nifi`
 
 
 ### Em cada instância:
@@ -75,5 +76,14 @@ Add Process Group -> Import:
 Verifique que os registros da planilha estão sendo/foram inseridos.
 
 ## Encerrar
-Para parar todos os contêineres, basta rodar o seguinte comando no diretório raiz do projeto: 
+Há diversas maneiras de parar os contêineres. Rode algum dos seguintes comandos no diretório raiz do projeto: 
+
+1 - Apenas para os contêineres. Nenhum dado é perdido:
+
+`sudo docker-compose stop`
+
+2 - Para os contêineres e os destrói: (Com exceção dos dados do MongoDB, todos os dados serão perdidos. Para também excluir os dados do MongoDB, exclua o seguinte diretório: `speed-layer/mongo`)
+
 `sudo docker-compose down`
+
+
