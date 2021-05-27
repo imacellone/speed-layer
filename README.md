@@ -40,7 +40,7 @@ Instruções de como subir e executar esta POC.
 O NiFi Registry pode ser acessado no seguinte endereço: `http://localhost:18080`
 
 
-#### Em cada instância:
+### Em cada instância:
 Controller Settings -> Registry Clients -> Add:
 
 **Name:** *Nifi Registry*, **URL:** *http://nifi-registry:18080*
@@ -48,12 +48,14 @@ Controller Settings -> Registry Clients -> Add:
 Em seguida: Botão direito do mouse no canvas -> Refresh.
 
 
-**Na instância 1**: Add Process Group -> Import:
+### Na instância 1:
+Add Process Group -> Import:
 
 **Bucket:** *message-producer*, **Flow Name:** *message-producer*.
 
 
-**Na instância 2**: Add Process Group -> Import:
+### Na instância 2:
+Add Process Group -> Import:
 
 **Bucket:** *message-consumer*, **Flow Name:** *write-to-mongo*.
 
