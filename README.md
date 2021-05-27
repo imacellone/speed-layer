@@ -34,9 +34,9 @@ Instruções de como subir e executar esta POC.
 2 - Execute: `sudo docker-compose up -d` .  *A primeira execução deste comando pode levar vários minutos.*
 
 ### Acesse as duas instâncias de NiFi
-1 - `http://localhost:8080`
+**Instância 1:** `http://localhost:8080`
 
-2 - `http://localhost:9090`
+**Instância 2:** `http://localhost:9090`
 
 
 ### Em cada instância:
