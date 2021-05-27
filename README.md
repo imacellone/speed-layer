@@ -1,4 +1,5 @@
 
+
 # POC - Speed Layer - Open Banking
 
 Instruções de como subir e executar esta POC.
@@ -25,7 +26,7 @@ Instruções de como subir e executar esta POC.
 
 4 - Na raiz do projeto, há um arquivo chamado: *docker-compose.yml*. Nele, altere as configurações, indicadas pelos comentários, para o correto funcionamento deste projeto.
 
-## Execução
+## Preparação
 
 1 - Em um terminal, abra o diretório raiz do projeto.
 
@@ -36,16 +37,42 @@ Instruções de como subir e executar esta POC.
 
 2 - `http://localhost:9090`
 
-O NiFi Registry pode ser acessado no seguinte endereço: `http://localhost:18080`
 
-**Em cada instância:** Configure o NiFi Registry com `http://nifi-registry:18080` e, em seguida: Botão direito do mouse no canvas -> Refresh.
+### Em cada instância:
+Controller Settings -> Registry Clients -> Add:
 
-**Na instância 1**, importe o Process Group relacionado à importação de arquivos, do Nifi Registry.
+**Name:** *Nifi Registry*, **URL:** *http://nifi-registry:18080*
 
-**Na instância 2**, importe o Process Group relacionado à persistência no MongoDB, do Nifi Registry.
+Em seguida: Botão direito do mouse no canvas -> Refresh.
 
 
-#### Pronto! Divirta-se!
+### Na instância 1:
+Add Process Group -> Import:
+
+**Bucket:** *message-producer*, **Flow Name:** *message-producer*.
+
+
+### Na instância 2:
+Add Process Group -> Import:
+
+**Bucket:** *message-consumer*, **Flow Name:** *write-to-mongo*.
+
+
+## Execução
+**Em cada instância:**  Acesse o Process Group recém importado e inicie os processadores.
+ - O arquivo speed-layer/nifi_file/input/bank.xlsx será consumido pela **Instância 1**.
+ 
+ Acesse o contêiner do MongoDB. Para isso, em um terminal, execute os seguintes comandos:
+
+    sudo docker exec -it mongodb /bin/bash
+        
+    mongo
+
+    use banking
+
+    db.transactions.find().pretty()
+
+Verifique que os registros da planilha estão sendo/foram inseridos.
 
 ## Encerrar
 Para parar todos os contêineres, basta rodar o seguinte comando no diretório raiz do projeto: 
