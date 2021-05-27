@@ -76,7 +76,7 @@ Add Process Group -> Import:
 Verifique que os registros da planilha estão sendo/foram inseridos.
 
 ## Encerrar
-Há diversas maneiras de parar os contêineres. basta rodar algum dos seguintes comandos no diretório raiz do projeto: 
+Há diversas maneiras de parar os contêineres. Rode algum dos seguintes comandos no diretório raiz do projeto: 
 
 1 - Apenas para os contêineres. Nenhum dado é perdido:
 
