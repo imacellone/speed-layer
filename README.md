@@ -40,7 +40,8 @@ Instruções de como subir e executar esta POC.
 O NiFi Registry pode ser acessado no seguinte endereço: `http://localhost:18080`
 
 
-**Em cada instância:**  Controller Settings -> Registry Clients -> Add:
+#### Em cada instância:
+Controller Settings -> Registry Clients -> Add:
 
 **Name:** *Nifi Registry*, **URL:** *http://nifi-registry:18080*
 
