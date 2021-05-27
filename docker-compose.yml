@@ -125,7 +125,7 @@ services:
     image: michalklempa/nifi-registry:0.8.0-01
     container_name: nifi-registry
     volumes:
-      - "/home/italo/.ssh:/home/nifi/.ssh"
+      - # /seu/diretorio/para/chaves/ssh:/home/nifi/.ssh
     ports:
       - target: 18080
         published: 18080
