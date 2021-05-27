@@ -76,5 +76,14 @@ Add Process Group -> Import:
 Verifique que os registros da planilha estão sendo/foram inseridos.
 
 ## Encerrar
-Para parar todos os contêineres, basta rodar o seguinte comando no diretório raiz do projeto: 
+Há diversas maneiras de parar os contêineres. basta rodar algum dos seguintes comandos no diretório raiz do projeto: 
+
+1 - Apenas para os contêineres. Nenhum dado é perdido:
+
+`sudo docker-compose stop`
+
+2 - Para os contêineres e os destrói: (Com exceção dos dados do MongoDB, todos os dados serão perdidos. Para também excluir os dados do MongoDB, exclua o seguinte diretório: `speed-layer/mongo`)
+
 `sudo docker-compose down`
+
+
