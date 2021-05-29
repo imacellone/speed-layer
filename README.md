@@ -25,8 +25,8 @@ Instruções de como executar esta POC.
 3 - Substitua os comentários em docker-compose.yml com as suas próprias informações:
  
  - Mapeamento do volume do NiFi Registry: Diretório da sua chave ssh.
- - Nome Completo
- - Endereço de e-mail relacionado à sua conta do GitHub
+ - Seu nome.
+ - Endereço de e-mail relacionado à sua conta do GitHub.
 
 ## Preparação
 
