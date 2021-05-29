@@ -2,7 +2,7 @@
 
 # POC - Speed Layer - Open Banking
 
-Instruções de como subir e executar esta POC.
+Instruções de como executar esta POC.
 
 ## Visão Geral da Arquitetura
 
@@ -16,16 +16,14 @@ Instruções de como subir e executar esta POC.
 
 ## Configuração
 
-1 - Solicite, ao dono deste repositório, a inclusão de seu usuário para obter acesso ao repositório: **https://github.com/imacellone/nifi-registry**
-
-2 -  **Gere** suas **chaves SSH** para configurar o acesso ao repositório: **https://github.com/imacellone/nifi-registry**, **bem como este** repositório. *Para mais informações: https://docs.github.com/pt/github/authenticating-to-github/connecting-to-github-with-ssh.*
+1 -  Certifique-se te possuir sua chave SSH configurada em sua conta do Git. *Para mais informações: https://tinyurl.com/3tw839jj*
 
  - Não utilize senhas durante a criação da chave SSH!
  
- 3 - Clone **este** repositório. *Para mais informações: https://git-scm.com/book/pt-pt/v2/No%C3%A7%C3%B5es-B%C3%A1sicas-do-Git-Obtendo-um-Reposit%C3%B3rio-Git.*
+ 2 - Clone **este** repositório. *Para mais informações: https://tinyurl.com/6bhk89tz*
 
 ### IMPORTANTE:
-**4 - Substitua os comentários em docker-compose.yml com as suas próprias informações (nome completo e e-mail). -- !!!NÃO COMITA ESSAS ALTERAÇÕES!!!**
+**3 - Substitua os comentários em docker-compose.yml com as suas próprias informações (nome completo e e-mail). -- !!!NÃO COMITA ESSAS ALTERAÇÕES!!!**
 
 ## Preparação
 
@@ -60,7 +58,8 @@ Add Process Group -> Import:
 
 
 ## Execução
-**Em cada instância:**  Acesse o Process Group recém importado e inicie os processadores.
+**Em cada instância:**  Inicie os processadores do Process Group recém importado.
+
  - O arquivo speed-layer/nifi_file/input/bank.xlsx será consumido pela **Instância 1**.
  
  Acesse o contêiner do MongoDB. Para isso, em um terminal, execute os seguintes comandos:
@@ -72,6 +71,9 @@ Add Process Group -> Import:
     use banking
 
     db.transactions.find().pretty()
+
+Para verificar a quantidade de registros inseridos:
+`db.transactions.count()`
 
 Verifique que os registros da planilha estão sendo/foram inseridos.
 
