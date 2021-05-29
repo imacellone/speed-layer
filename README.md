@@ -20,10 +20,13 @@ Instruções de como executar esta POC.
 
  - Não utilize senhas durante a criação da chave SSH!
  
- 2 - Clone **este** repositório. *Para mais informações: https://tinyurl.com/6bhk89tz*
+2 - Clone **este** repositório. *Para mais informações: https://tinyurl.com/6bhk89tz*
 
-### IMPORTANTE:
-**3 - Substitua os comentários em docker-compose.yml com as suas próprias informações (nome completo e e-mail). -- !!!NÃO COMITA ESSAS ALTERAÇÕES!!!**
+3 - Substitua os comentários em docker-compose.yml com as suas próprias informações:
+ 
+ - Mapeamento do volume do NiFi Registry: Diretório da sua chave ssh.
+ - Nome Completo
+ - Endereço de e-mail relacionado à sua conta do GitHub
 
 ## Preparação
 
